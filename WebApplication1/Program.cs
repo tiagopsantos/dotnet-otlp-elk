@@ -6,8 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 //AddOpenTelemetryToELKStack
-builder.AddOpenTelemetryToELKStack("WebApplication", "http://localhost:8200");
-
+builder.AddOpenTelemetryToELKStack("WebApplication", builder.Configuration["elk-apm-server"]);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -10,8 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //AddOpenTelemetryToELKStack
-builder.AddOpenTelemetryToELKStack("Api1", "http://localhost:8200");
-
+builder.AddOpenTelemetryToELKStack("Api1", builder.Configuration["elk-apm-server"]);
 
 var app = builder.Build();
 

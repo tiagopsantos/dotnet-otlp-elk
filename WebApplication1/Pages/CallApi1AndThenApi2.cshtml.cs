@@ -17,7 +17,7 @@ namespace WebApplication1.Pages
             for (int i = 0; i < 10; i++)
             {
                 var httpClient = new HttpClient();
-                var httpResponseMessage = await httpClient.GetAsync($"{APIUrl}/WeatherForecast");
+                var httpResponseMessage = await httpClient.GetAsync($"{APIUrl}/WeatherForecastIn2");
             }
         }
     }
