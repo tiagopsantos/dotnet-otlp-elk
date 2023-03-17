@@ -22,6 +22,8 @@ namespace WebApplication1.Pages
         public void OnGet()
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            _logger.LogError("Log error in error page");
+
         }
     }
 }

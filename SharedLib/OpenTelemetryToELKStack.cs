@@ -6,6 +6,7 @@ using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using Microsoft.Extensions.Options;
 
 namespace SharedLib
 {
@@ -66,7 +67,13 @@ namespace SharedLib
             builder.Logging.AddOpenTelemetry(options =>
             {
                 // Export the body of the message
-                options.IncludeFormattedMessage = true;
+                options.IncludeFormattedMessage = true; 
+                options.IncludeScopes = true;
+                options.ParseStateValues = true;
+
+                // add custom processor
+                options.AddProcessor(new CustomLogProcessor());
+
                 // Configure the resource attribute `service.name` to MyServiceName
                 options.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(servicename));
                 options.AddConsoleExporter();

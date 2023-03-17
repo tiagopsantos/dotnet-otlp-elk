@@ -2,14 +2,14 @@
 Dotnet with OpenTelemetry + ELK Stack - 1 Web + 2 API
 
 ## Requirenments
-Docker with ELK + APM 
+Docker with ELK + APM + ElastisSearch
 See https://github.com/deviantony/docker-elk
 
 Example of Fleet-enrolled Elastic Agent pre-configured with an agent policy
 for running the APM Server integration (see kibana.yml).
 Run with
 ```
-docker-compose  -f docker-compose.yml -f extensions/fleet/fleet-compose.yml -f extensions/fleet/agent-apmserver-compose.yml up
+docker-compose  -f docker-compose.yml -f extensions/fleet/fleet-compose.yml -f extensions/fleet/agent-apmserver-compose.yml docker-compose  -f docker-compose.yml -f extensions/fleet/fleet-compose.yml -f extensions/fleet/agent-apmserver-compose.yml -f extensions/enterprise-search/enterprise-search-compose.yml up
 ```
 
 ![Running Docker with ELK + APM .](/assets/images/DockerELK-APM.png)
@@ -21,6 +21,14 @@ Had to change the password "changeme" of "kibana_system"
 docker-compose exec elasticsearch bin/elasticsearch-reset-password --batch --user kibana_system
 ```	
 Then copy the new pass to .env
+
+### Testing with ElasticSearch - AppSearch
+To enable the management experience for Enterprise Search, modify the Kibana configuration file in
+[`kibana/config/kibana.yml`][config-kbn] and add the following setting:
+```yaml
+enterpriseSearch.host: http://enterprise-search:3002
+```	
+
 
 ## Project dotnet
 Set multiple Start Visual Studio - Web, Api1, Api2
@@ -57,3 +65,10 @@ Will start the https profile configs
 
 ### Discover
 ![discover.](/assets/images/DEMO-discover.png)
+
+## DEMO Log Exception
+### Trace Timeline
+![trace-timeline](/assets/images/DEMO-trace-timeline-exception.png)
+
+### Observability To Discover
+![Observability To Discover.](/assets/images/DEMO-observabilityToDiscover.png)
