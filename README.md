@@ -72,3 +72,18 @@ Will start the https profile configs
 
 ### Observability To Discover
 ![Observability To Discover.](/assets/images/DEMO-observabilityToDiscover.png)
+
+
+
+## ElasticSearch - API
+### Create Index (API) 
+![Elasticsearch-Index-API](/assets/images/Elasticsearch-Index-API.png)
+
+### Add Documents via API (curl, postman...)
+![AddDocuments](/assets/images/Elasticsearch-AddDocuments.png)
+
+### Browse Documents
+![BrowseDocuments](/assets/images/Elasticsearch-BrowseDocuments.png)
+
+### .NET  ElasticSearchClient - Search by index
+![DotNetSearch](/assets/images/Elasticsearch-DotNetSearch.png)

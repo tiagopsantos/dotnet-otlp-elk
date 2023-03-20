@@ -36,7 +36,7 @@ namespace WebApplication1.Pages
             var res = client.SearchShards();
             //https://www.elastic.co/guide/en/elasticsearch/client/net-api/8.6/examples.html
             var x = client.Search<NationalParkDemoDoc>(s => s
-            .Index("search-national-parks-demo")    
+            .Index("search-json-generator-api")    
             .Size(10)
             );
 
@@ -46,9 +46,10 @@ namespace WebApplication1.Pages
         {
             public string id { get; set; }
             public string title { get; set; }
-            public string states { get; set; }
+            public string[] states { get; set; }
             public int visitors { get; set; }
-
+            //
+            public string name { get; set; } //for https://json-generator.com/
         }
     }
 }
