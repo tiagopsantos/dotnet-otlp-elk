@@ -80,10 +80,10 @@ Will start the https profile configs
 ![Elasticsearch-Index-API](/assets/images/Elasticsearch-Index-API.png)
 
 ### Add Documents via API (curl, postman...)
-![AddDocuments](/assets/images/Elasticsearch-AddDocuments.png)
+![AddDocuments](/assets/images/Elasticsearch-Index-AddDocuments.png)
 
 ### Browse Documents
-![BrowseDocuments](/assets/images/Elasticsearch-BrowseDocuments.png)
+![BrowseDocuments](/assets/images/Elasticsearch-Index-BrowseDocuments.png)
 
 ### .NET  ElasticSearchClient - Search by index
-![DotNetSearch](/assets/images/Elasticsearch-DotNetSearch.png)
+![DotNetSearch](/assets/images/Elasticsearch-Index-DotNetSearch.png)
