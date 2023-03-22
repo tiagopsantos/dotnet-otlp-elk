@@ -9,14 +9,14 @@ namespace WebApplication1.Pages
 {
     public class ElasticsearchModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly ILogger<ElasticsearchModel> _logger;
         public string ElasticsearchServerUrl { get; set; }
         public string AppSearchAPIKey { get; set; }
 
         public dynamic SearchResult { get; set; }
 
 
-        public ElasticsearchModel(ILogger<IndexModel> logger, IConfiguration config)
+        public ElasticsearchModel(ILogger<ElasticsearchModel> logger, IConfiguration config)
         {
             _logger = logger;
             ElasticsearchServerUrl = config["ElasticsearchServerUrl"];
@@ -39,7 +39,7 @@ namespace WebApplication1.Pages
             .Index("search-json-generator-api")    
             .Size(10)
             );
-
+            _logger.LogInformation("get search-json-generator-api: " + x.Documents);
             SearchResult = res;
         }
         class NationalParkDemoDoc
