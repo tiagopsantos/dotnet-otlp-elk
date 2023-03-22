@@ -7,6 +7,7 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Microsoft.Extensions.Options;
+using Azure.Monitor.OpenTelemetry.Exporter;
 
 namespace SharedLib
 {
@@ -30,7 +31,8 @@ namespace SharedLib
             //string servicename = "my-service-name";
             //string endpointurl = "http://localhost:8200";
 
-
+            // Read Azure Monitor connection string from configuration
+            var azmConnectionString = builder.Configuration["AzureMonitorConnectionString"];
 
             builder.Services.AddOpenTelemetry()
                 .ConfigureResource(builder => builder.AddService(serviceName: servicename))
@@ -43,6 +45,9 @@ namespace SharedLib
                         configure.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.Grpc;
                         configure.Endpoint = new Uri(endpointurl);
                     })
+
+                    .AddAzureMonitorTraceExporter(options =>
+                        options.ConnectionString = azmConnectionString)
                 )
                 .WithMetrics(builder => builder
                     // Configure the resource attribute `service.name` to MyServiceName
@@ -57,6 +62,9 @@ namespace SharedLib
                         configure.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.Grpc;
                         configure.Endpoint = new Uri(endpointurl);
                     })
+
+                    .AddAzureMonitorMetricExporter(options =>
+                        options.ConnectionString = azmConnectionString)
                 );
 
 
@@ -82,6 +90,11 @@ namespace SharedLib
                     configure.Protocol = OpenTelemetry.Exporter.OtlpExportProtocol.Grpc;
                     configure.Endpoint = new Uri(endpointurl);
                 });
+
+                //https://www.twilio.com/blog/export-logs-to-azure-monitor-with-opentelemetry-and-dotnet
+                // send logs to Azure Monitor
+                options.AddAzureMonitorLogExporter(options =>
+                    options.ConnectionString = azmConnectionString);
 
             });
         }

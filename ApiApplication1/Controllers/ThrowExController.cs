@@ -21,7 +21,16 @@ namespace ApiApplication1.Controllers
         [HttpGet(Name = "GetThrowEx")]
         public void Get()
         {
-            throw new Exception("Error in API1");
+            try
+            {
+
+                throw new Exception("Error in API1");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "log error ");
+                throw;
+            }
         }
     }
 }
